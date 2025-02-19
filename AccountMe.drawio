@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15" version="26.0.14" pages="4">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="26.0.14" pages="4">
   <diagram name="Page-1" id="Y1XRx36WoZQGSGLYm_jw">
     <mxGraphModel dx="1416" dy="715" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -230,7 +230,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Z1h8ECX8rQUql1VUIFxh" name="AccountMe">
-    <mxGraphModel dx="2832" dy="1430" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="795" dy="484" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -507,7 +507,7 @@
         <mxCell id="c2e_7k0j0S8OTlrdy8KA-141" value="re_analyzed" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="1775" y="370" width="90" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="XrM_dHUcD2mpZNYUPlLd-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="c2e_7k0j0S8OTlrdy8KA-143" target="XrM_dHUcD2mpZNYUPlLd-2">
+        <mxCell id="XrM_dHUcD2mpZNYUPlLd-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="c2e_7k0j0S8OTlrdy8KA-143" target="XrM_dHUcD2mpZNYUPlLd-2" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="c2e_7k0j0S8OTlrdy8KA-143" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.gear;" parent="1" vertex="1">
@@ -564,19 +564,19 @@
         <mxCell id="c2e_7k0j0S8OTlrdy8KA-169" value="Etat CONFIRMED" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="1125" y="860" width="120" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="XrM_dHUcD2mpZNYUPlLd-1" value="Batch d&#39;alimentation d&#39;ELK" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="XrM_dHUcD2mpZNYUPlLd-1" value="Batch d&#39;alimentation d&#39;ELK" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="300" y="700" width="210" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="XrM_dHUcD2mpZNYUPlLd-2" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://humancoders-formations.s3.amazonaws.com/uploads/course/logo/38/thumb_bigger_formation-elasticsearch.png;" vertex="1" parent="1">
+        <mxCell id="XrM_dHUcD2mpZNYUPlLd-2" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://humancoders-formations.s3.amazonaws.com/uploads/course/logo/38/thumb_bigger_formation-elasticsearch.png;" parent="1" vertex="1">
           <mxGeometry x="148.2" y="745" width="45.24" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="XrM_dHUcD2mpZNYUPlLd-8" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://goopensource.fr/wp-content/uploads/2021/07/kibana-1024x937.png;" vertex="1" parent="1">
+        <mxCell id="XrM_dHUcD2mpZNYUPlLd-8" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://goopensource.fr/wp-content/uploads/2021/07/kibana-1024x937.png;" parent="1" vertex="1">
           <mxGeometry x="121.63999999999999" y="805" width="98.36" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="XrM_dHUcD2mpZNYUPlLd-9" value="Etape 4" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="XrM_dHUcD2mpZNYUPlLd-9" value="Etape 4" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="450" y="755" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="XrM_dHUcD2mpZNYUPlLd-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.855;entryY=1;entryDx=0;entryDy=-4.35;entryPerimeter=0;" edge="1" parent="1" source="c2e_7k0j0S8OTlrdy8KA-143" target="c2e_7k0j0S8OTlrdy8KA-109">
+        <mxCell id="XrM_dHUcD2mpZNYUPlLd-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.855;entryY=1;entryDx=0;entryDy=-4.35;entryPerimeter=0;" parent="1" source="c2e_7k0j0S8OTlrdy8KA-143" target="c2e_7k0j0S8OTlrdy8KA-109" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="400" y="1000" />
@@ -584,8 +584,11 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="XrM_dHUcD2mpZNYUPlLd-11" value="Etat ANALYZED" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="XrM_dHUcD2mpZNYUPlLd-11" value="Etat ANALYZED" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="847" y="1000" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="7G1lb82Tn3G-8sLAzXpW-3" value="Commentaire de maxime:&lt;br&gt;Est-ce que l&#39;étape 1 ne pourrait pas être un batch ?" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1065" y="20" width="225" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
