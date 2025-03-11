@@ -1,0 +1,15 @@
+@startuml
+
+class Transaction
+
+Transaction : String id
+Transaction : Date transactionDate
+Transaction : String type
+Transaction : String description
+Transaction : Double amount
+Transaction : String bankName
+Transaction : String mainCategory
+Transaction : String secondCategory
+Transaction : String[] tags
+
+@enduml
