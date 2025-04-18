@@ -1,4 +1,4 @@
-package org.pauldenhez.AccountMe.model;
+package org.pauldenhez.accountme.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

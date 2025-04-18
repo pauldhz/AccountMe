@@ -1,4 +1,4 @@
-package org.pauldenhez.AccountMe;
+package org.pauldenhez.accountme;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

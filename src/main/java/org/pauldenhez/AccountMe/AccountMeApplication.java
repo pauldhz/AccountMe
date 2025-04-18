@@ -1,4 +1,4 @@
-package org.pauldenhez.AccountMe;
+package org.pauldenhez.accountme;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
