@@ -1,0 +1,29 @@
+@startjson
+
+{
+    "id": 123456789,
+    "date": "2025-03-12 12:12:00",
+    "method": "VIREMENT",
+    "comment": "Virement vacances Paul",
+    "full_comment": "Virement vacances Paul reference 127857297108",
+    "type": "DEBIT",
+    "amount": -153.44,
+    "additional_informations": {
+        "category": "Banque",
+        "subcategory": "Remboursement",
+        "internalTransfer": false
+    },
+    "tags": ["vacances", "remboursement", "virement"],
+    "bank": {
+        "id": 1,
+        "name": "Trade Republic"
+    },
+    "account": {
+        "id": 1,
+        "name": "Compte-Titre",
+        "numero": "CCP927281977"
+    }
+
+}
+
+@endjson
