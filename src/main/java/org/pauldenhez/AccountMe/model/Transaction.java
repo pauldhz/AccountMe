@@ -17,7 +17,7 @@ public class Transaction {
     @Id
     private String id;
 
-    @Field(type = FieldType.Date, name = "transaction_date")
+    @Field(type = FieldType.Date)
     private Date date;
 
     @Field(type = FieldType.Keyword)
