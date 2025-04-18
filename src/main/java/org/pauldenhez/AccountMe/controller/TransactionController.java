@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,13 +24,8 @@ public class TransactionController {
 
     @GetMapping(path = "/transactions")
     public ResponseEntity<List<Transaction>> listAll() {
-        Iterable<Transaction> iterable = transactionRepository.findAll();
-        List<Transaction> transactions = new ArrayList<>();
-        for(Transaction transaction : iterable) {
-            System.out.println(transaction);
-            transactions.add(transaction);
-        }
-
+        final var transactions = transactionRepository.findAll();
+        transactions.forEach(System.out::println);
         return ResponseEntity.ok(transactions);
     }
 
