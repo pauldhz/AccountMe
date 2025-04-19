@@ -1,4 +1,4 @@
-package org.pauldenhez.AccountMe.config;
+package org.pauldenhez.accountme.config;
 
 import org.springframework.context.annotation.Configuration;
 
