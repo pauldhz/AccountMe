@@ -1,4 +1,4 @@
-package org.pauldenhez.accountme.config;
+package org.pauldenhez.accountme.batch.config;
 
 import org.springframework.context.annotation.Configuration;
 

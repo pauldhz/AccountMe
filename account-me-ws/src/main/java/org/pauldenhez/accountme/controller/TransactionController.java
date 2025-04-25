@@ -1,7 +1,7 @@
 package org.pauldenhez.accountme.controller;
 
-import org.pauldenhez.accountme.model.Transaction;
-import org.pauldenhez.accountme.repository.TransactionRepository;
+import org.pauldenhez.accountme.batch.model.Transaction;
+import org.pauldenhez.accountme.batch.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

@@ -1,4 +1,4 @@
-package org.pauldenhez.accountme.model;
+package org.pauldenhez.accountme.batch.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,6 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.Date;
-import java.util.List;
 
 @Document(indexName = "transactions")
 @Data
@@ -22,13 +21,7 @@ public class Transaction {
     private Date date;
 
     @Field(type = FieldType.Keyword)
-    private TransactionMethod method;
-
-    @Field(type = FieldType.Keyword)
     private String comment;
-
-    @Field(type = FieldType.Text)
-    private String fullComment;
 
     @Field(type = FieldType.Keyword)
     private TransactionType type;
@@ -39,6 +32,4 @@ public class Transaction {
     @Field(type = FieldType.Object)
     private AdditionalInformation additionalInformation;
 
-    @Field(type = FieldType.Keyword)
-    private List<String> tags;
 }
