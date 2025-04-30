@@ -1,10 +1,11 @@
-package org.pauldenhez.accountme.batch.model;
+package org.pauldenhez.accountme.ws.model;
 
 import lombok.Data;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Data
+@Deprecated
 public class AdditionalInformation {
 
     @Field(type = FieldType.Keyword)

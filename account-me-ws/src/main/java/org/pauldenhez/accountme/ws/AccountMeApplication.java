@@ -1,4 +1,4 @@
-package org.pauldenhez.accountme;
+package org.pauldenhez.accountme.ws;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

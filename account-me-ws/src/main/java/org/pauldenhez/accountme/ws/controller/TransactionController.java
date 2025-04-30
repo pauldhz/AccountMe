@@ -1,7 +1,7 @@
-package org.pauldenhez.accountme.controller;
+package org.pauldenhez.accountme.ws.controller;
 
-import org.pauldenhez.accountme.batch.model.Transaction;
-import org.pauldenhez.accountme.batch.repository.TransactionRepository;
+import org.pauldenhez.accountme.common.model.Transaction;
+import org.pauldenhez.accountme.ws.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +25,6 @@ public class TransactionController {
     @GetMapping(path = "/transactions")
     public ResponseEntity<List<Transaction>> listAll() {
         final var transactions = transactionRepository.findAll();
-        transactions.forEach(System.out::println);
         return ResponseEntity.ok(transactions);
     }
 

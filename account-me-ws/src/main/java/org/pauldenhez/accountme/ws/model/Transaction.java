@@ -1,7 +1,9 @@
-package org.pauldenhez.accountme.batch.model;
+package org.pauldenhez.accountme.ws.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.pauldenhez.accountme.common.model.AdditionalInformation;
+import org.pauldenhez.accountme.common.model.TransactionType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -12,6 +14,7 @@ import java.util.Date;
 @Document(indexName = "transactions")
 @Data
 @AllArgsConstructor
+@Deprecated
 public class Transaction {
 
     @Id
