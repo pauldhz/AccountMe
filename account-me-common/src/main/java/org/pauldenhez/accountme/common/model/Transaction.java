@@ -1,4 +1,4 @@
-package org.pauldenhez.accountme.batch.model;
+package org.pauldenhez.accountme.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +26,9 @@ public class Transaction {
 
     @Field(type = FieldType.Keyword)
     private String comment;
+
+    @Field(type = FieldType.Text)
+    private String label;
 
     @Field(type = FieldType.Text)
     private String fullComment;

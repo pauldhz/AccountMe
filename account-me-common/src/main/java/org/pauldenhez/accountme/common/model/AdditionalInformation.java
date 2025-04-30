@@ -1,4 +1,4 @@
-package org.pauldenhez.accountme.batch.model;
+package org.pauldenhez.accountme.common.model;
 
 import lombok.Data;
 import org.springframework.data.elasticsearch.annotations.Field;

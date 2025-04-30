@@ -8,6 +8,7 @@ group = 'org.pauldenhez'
 version = '0.0.1-SNAPSHOT'
 
 java {
+	sourceCompatibility = JavaLanguageVersion.of(17)
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)
 	}
@@ -18,7 +19,7 @@ repositories {
 }
 
 dependencies {
-	implementation project(':account-me-models')
+	implementation project(':account-me-common')
 //	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 //  implementation 'org.springframework.boot:spring-boot-starter-security' // TODO uncomment to activate security
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
