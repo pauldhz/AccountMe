@@ -1,1 +1,3 @@
-rootProject.name = 'AccountMe'
+rootProject.name = 'account-me'
+
+include 'account-me-common', 'account-me-batch', 'account-me-ws'

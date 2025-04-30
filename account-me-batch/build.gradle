@@ -1,0 +1,37 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.4'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'org.pauldenhez'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = JavaLanguageVersion.of(17)
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation project(':account-me-common')
+	implementation 'org.springframework.boot:spring-boot-starter-batch'
+	implementation 'org.springframework.data:spring-data-elasticsearch'
+	// https://mvnrepository.com/artifact/org.elasticsearch.plugin/x-pack-sql-jdbc
+	//implementation("org.elasticsearch.plugin:x-pack-sql-jdbc:8.17.4")
+	// https://mvnrepository.com/artifact/org.projectlombok/lombok
+	compileOnly 'org.projectlombok:lombok:1.18.38'
+	annotationProcessor 'org.projectlombok:lombok:1.18.38'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.batch:spring-batch-test'
+	runtimeOnly 'com.h2database:h2'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
