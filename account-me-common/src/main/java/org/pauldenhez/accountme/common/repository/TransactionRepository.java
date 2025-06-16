@@ -1,7 +1,7 @@
 package org.pauldenhez.accountme.common.repository;
 
 import lombok.NonNull;
-import org.pauldenhez.accountme.common.model.Transaction;
+import org.pauldenhez.accountme.common.model.transaction.Transaction;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package org.pauldenhez.accountme.common.model;
+package org.pauldenhez.accountme.common.model.transaction;
 
 public enum TransactionMethod {
     // Virement
