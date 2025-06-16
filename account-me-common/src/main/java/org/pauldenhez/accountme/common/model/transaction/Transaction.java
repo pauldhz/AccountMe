@@ -1,7 +1,8 @@
-package org.pauldenhez.accountme.common.model;
+package org.pauldenhez.accountme.common.model.transaction;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.pauldenhez.accountme.common.model.transaction.vo.PositiveAmount;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -37,7 +38,7 @@ public class Transaction {
     private TransactionType type;
 
     @Field(type = FieldType.Double)
-    private Double amount;
+    private PositiveAmount amount;
 
     @Field(type = FieldType.Object)
     private AdditionalInformation additionalInformation;

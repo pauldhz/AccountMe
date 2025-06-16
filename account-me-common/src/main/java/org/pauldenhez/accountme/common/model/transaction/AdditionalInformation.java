@@ -1,10 +1,12 @@
-package org.pauldenhez.accountme.common.model;
+package org.pauldenhez.accountme.common.model.transaction;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Data
+@AllArgsConstructor
 public class AdditionalInformation {
 
     @Field(type = FieldType.Keyword)

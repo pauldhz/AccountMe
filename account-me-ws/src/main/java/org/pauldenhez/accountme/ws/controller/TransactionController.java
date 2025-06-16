@@ -1,8 +1,9 @@
 package org.pauldenhez.accountme.ws.controller;
 
-import org.pauldenhez.accountme.common.model.Transaction;
+import org.pauldenhez.accountme.common.model.transaction.Transaction;
+import org.pauldenhez.accountme.common.model.transaction.dto.TransactionDTO;
+import org.pauldenhez.accountme.common.model.transaction.mapper.TransactionMapper;
 import org.pauldenhez.accountme.ws.repository.TransactionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,27 +22,27 @@ public class TransactionController {
     }
 
     @GetMapping(path = "/transactions")
-    public ResponseEntity<List<Transaction>> listAll() {
-        final var transactions = transactionRepository.findAll();
+    public ResponseEntity<List<TransactionDTO>> listAll() {
+        final var transactions = transactionRepository.findAll().stream().map(TransactionMapper::toDto).toList();
         return ResponseEntity.ok(transactions);
     }
 
     @PutMapping(path = "/transactions")
-    public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
-        Transaction savedTransaction = transactionRepository.save(transaction);
+    public ResponseEntity<Transaction> createTransaction(@RequestBody TransactionDTO transaction) {
+        Transaction savedTransaction = transactionRepository.save(TransactionMapper.fromDto(transaction));
         return ResponseEntity.ok(savedTransaction);
     }
 
     @PostMapping(path = "/transactions")
-    public ResponseEntity<Boolean> createTransactions(@RequestBody Transaction[] transactions) {
-        transactionRepository.saveAll(Arrays.asList(transactions));
+    public ResponseEntity<Boolean> createTransactions(@RequestBody TransactionDTO[] transactions) {
+        transactionRepository.saveAll(Arrays.stream(transactions).map(TransactionMapper::fromDto).toList());
         return ResponseEntity.ok(true);
     }
 
     @GetMapping(path = "/transactions/{id}")
-    public ResponseEntity<Transaction> getById(@PathVariable String id) {
+    public ResponseEntity<TransactionDTO> getById(@PathVariable String id) {
         Optional<Transaction> transaction = transactionRepository.findById(id);
-        return transaction.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return transaction.map(TransactionMapper::toDto).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping(path = "/transactions/{id}")
