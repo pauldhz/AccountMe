@@ -5,7 +5,7 @@ import org.pauldenhez.accountme.common.model.transaction.AdditionalInformation;
 import org.pauldenhez.accountme.common.model.transaction.Transaction;
 import org.pauldenhez.accountme.common.model.transaction.TransactionMethod;
 import org.pauldenhez.accountme.common.model.transaction.TransactionType;
-import org.pauldenhez.accountme.common.model.transaction.dto.TransactionDTO;
+import org.pauldenhez.accountme.common.model.transaction.dto.TransactionResponse;
 import org.pauldenhez.accountme.common.model.transaction.vo.PositiveAmount;
 
 import java.util.Date;
@@ -18,7 +18,7 @@ class TransactionMapperTest {
     @Test
     void shouldMapDtoToEntityCorrectly() {
         // Given
-        TransactionDTO dto = new TransactionDTO(
+        TransactionResponse dto = new TransactionResponse(
                 "txn-001",
                 new Date(),
                 TransactionMethod.PAYMENT,
@@ -28,7 +28,7 @@ class TransactionMapperTest {
                 TransactionType.CREDIT,
                 123.45,
                 new AdditionalInformation("category", "subcategory", true, "Checking Account"),
-                List.of("tag1", "tag2")
+                List.of("tag1", "tag2"), null, null
         );
 
         Transaction entity = TransactionMapper.fromDto(dto);
@@ -63,7 +63,7 @@ class TransactionMapperTest {
                 List.of("tagA", "tagB")
         );
 
-        TransactionDTO dto = TransactionMapper.toDto(entity);
+        TransactionResponse dto = TransactionMapper.toDto(entity, null, null);
 
         assertThat(dto).isNotNull();
         assertThat(dto.id()).isEqualTo(entity.getId());
