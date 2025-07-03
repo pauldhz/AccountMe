@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "date": 1751573494753,
+    "method": "BANK_CARD",
+    "comment": "Comment",
+    "label": "label",
+    "fullComment": "comment",
+    "type": "CREDIT",
+    "amount": 50.0,
+    "additionalInformation": null,
+    "tags": null
+  },
+  {
+    "id": "2",
+    "date": 1751573494753,
+    "method": "BANK_CARD",
+    "comment": "Comment",
+    "label": "label",
+    "fullComment": "comment",
+    "type": "CREDIT",
+    "amount": 50.0,
+    "additionalInformation": null,
+    "tags": null
+  },
+  {
+    "id": "3",
+    "date": 1751573494753,
+    "method": "BANK_CARD",
+    "comment": "Comment",
+    "label": "label",
+    "fullComment": "comment",
+    "type": "CREDIT",
+    "amount": 50.0,
+    "additionalInformation": null,
+    "tags": null
+  },
+  {
+    "id": "4",
+    "date": 1751573494753,
+    "method": "BANK_CARD",
+    "comment": "Comment",
+    "label": "label",
+    "fullComment": "comment",
+    "type": "CREDIT",
+    "amount": 50.0,
+    "additionalInformation": null,
+    "tags": null
+  },
+  {
+    "id": "5",
+    "date": 1751573494753,
+    "method": "BANK_CARD",
+    "comment": "Comment",
+    "label": "label",
+    "fullComment": "comment",
+    "type": "CREDIT",
+    "amount": 50.0,
+    "additionalInformation": null,
+    "tags": null
+  },
+  {
+    "id": "6",
+    "date": 1751573494753,
+    "method": "BANK_CARD",
+    "comment": "Comment",
+    "label": "label",
+    "fullComment": "comment",
+    "type": "CREDIT",
+    "amount": 50.0,
+    "additionalInformation": null,
+    "tags": null
+  }
+]

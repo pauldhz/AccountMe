@@ -2,10 +2,9 @@ package org.pauldenhez.accountme.common.model.transaction.mapper;
 
 import org.junit.jupiter.api.Test;
 import org.pauldenhez.accountme.common.model.transaction.AdditionalInformation;
-import org.pauldenhez.accountme.common.model.transaction.Transaction;
 import org.pauldenhez.accountme.common.model.transaction.TransactionMethod;
 import org.pauldenhez.accountme.common.model.transaction.TransactionType;
-import org.pauldenhez.accountme.common.model.transaction.dto.TransactionResponse;
+import org.pauldenhez.accountme.common.model.transaction.dto.TransactionDTO;
 import org.pauldenhez.accountme.common.model.transaction.vo.PositiveAmount;
 
 import java.util.Date;
@@ -13,12 +12,12 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class TransactionMapperTest {
+class TransactionDTOMapperTest {
 
     @Test
     void shouldMapDtoToEntityCorrectly() {
         // Given
-        TransactionResponse dto = new TransactionResponse(
+        TransactionDTO dto = new TransactionDTO(
                 "txn-001",
                 new Date(),
                 TransactionMethod.PAYMENT,
@@ -28,10 +27,9 @@ class TransactionMapperTest {
                 TransactionType.CREDIT,
                 123.45,
                 new AdditionalInformation("category", "subcategory", true, "Checking Account"),
-                List.of("tag1", "tag2"), null, null
-        );
+                List.of("tag1", "tag2"));
 
-        Transaction entity = TransactionMapper.fromDto(dto);
+        org.pauldenhez.accountme.common.model.transaction.Transaction entity = TransactionMapper.fromDto(dto);
 
         assertThat(entity).isNotNull();
         assertThat(entity.getId()).isEqualTo(dto.id());
@@ -50,7 +48,7 @@ class TransactionMapperTest {
     @Test
     void shouldMapEntityToDtoCorrectly() {
         // Given
-        Transaction entity = new Transaction(
+        org.pauldenhez.accountme.common.model.transaction.Transaction entity = new org.pauldenhez.accountme.common.model.transaction.Transaction(
                 "txn-002",
                 new Date(),
                 TransactionMethod.PAYMENT,
@@ -63,7 +61,7 @@ class TransactionMapperTest {
                 List.of("tagA", "tagB")
         );
 
-        TransactionResponse dto = TransactionMapper.toDto(entity, null, null);
+        TransactionDTO dto = TransactionMapper.toDto(entity);
 
         assertThat(dto).isNotNull();
         assertThat(dto.id()).isEqualTo(entity.getId());

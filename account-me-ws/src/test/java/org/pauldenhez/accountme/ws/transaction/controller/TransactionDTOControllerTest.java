@@ -1,11 +1,9 @@
     package org.pauldenhez.accountme.ws.transaction.controller;
 
+    import com.jayway.jsonpath.DocumentContext;
+    import com.jayway.jsonpath.JsonPath;
     import org.junit.jupiter.api.Test;
     import org.junit.jupiter.api.extension.ExtendWith;
-    import org.pauldenhez.accountme.common.model.transaction.Transaction;
-    import org.pauldenhez.accountme.common.model.transaction.TransactionMethod;
-    import org.pauldenhez.accountme.common.model.transaction.TransactionType;
-    import org.pauldenhez.accountme.common.model.transaction.vo.PositiveAmount;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.boot.test.context.SpringBootTest;
     import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -17,14 +15,14 @@
     import org.testcontainers.junit.jupiter.Container;
     import org.testcontainers.junit.jupiter.Testcontainers;
 
-    import java.util.Date;
-
     import static org.assertj.core.api.Assertions.assertThat;
 
     @Testcontainers
     @ExtendWith(SpringExtension.class)
     @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-    class TransactionControllerTest {
+    class TransactionDTOControllerTest {
+
+        private final static int MIN_DATA_TEST_LENGTH = 6;
 
         @Container
         static ElasticsearchContainer elasticsearchContainer =
@@ -41,6 +39,11 @@
         }
 
         @Test
+        public void shouldDatasetBeLongEnough() {
+            assertThat(transactionRepository.findAll().size()).isGreaterThanOrEqualTo(MIN_DATA_TEST_LENGTH);
+        }
+
+        @Test
         public void shouldElasticSearchAbleToRun() {
             assertThat(elasticsearchContainer.isCreated()).isTrue();
             assertThat(elasticsearchContainer.isRunning()).isTrue();
@@ -48,23 +51,22 @@
 
         @Test
         public void shouldReturnFirstPageTransactions() {
+            int SIZE_LIMIT = 5;
+            String transactionURI = "/transactions?size=" + SIZE_LIMIT + "&page=1";
+            var responseEntity = testRestTemplate.getForEntity(transactionURI, String.class);
+            DocumentContext ctx = JsonPath.parse(responseEntity.getBody());
+            int length = ctx.read("$.length()");
+            assertThat(length).isLessThanOrEqualTo(SIZE_LIMIT);
+        }
 
-            transactionRepository.save(
-                    new Transaction(
-                            "1L",
-                            new Date(),
-                            TransactionMethod.BANK_CARD,
-                            "Comment",
-                            "label",
-                            "comment",
-                            TransactionType.CREDIT,
-                            new PositiveAmount(50),
-                            null,
-                            null
-                    ));
-
-            var responseEntity = testRestTemplate.getForEntity("/transactions", String.class);
-            System.out.println(responseEntity.getBody());
-            assertThat(responseEntity).isNotNull();
+        @Test
+        public void shouldReturnFirstPageWithNextPageLink() {
+            int SIZE_LIMIT = 5;
+            int PAGE_NUMBER = 1;
+            String transactionURI = "/transactions?size=" + SIZE_LIMIT + "&page=" + PAGE_NUMBER;
+            var responseEntity = testRestTemplate.getForEntity(transactionURI, String.class);
+            DocumentContext ctx = JsonPath.parse(responseEntity.getBody());
+            String nextLink = ctx.read("$.links.next");
+            assertThat(nextLink).isEqualTo("/transactions?size=" + SIZE_LIMIT + "&page=" + (PAGE_NUMBER + 1));
         }
     }

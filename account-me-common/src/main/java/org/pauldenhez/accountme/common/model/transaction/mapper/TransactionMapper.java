@@ -1,19 +1,16 @@
 package org.pauldenhez.accountme.common.model.transaction.mapper;
 
-import org.pauldenhez.accountme.common.model.transaction.Transaction;
-import org.pauldenhez.accountme.common.model.hateoas.Links;
-import org.pauldenhez.accountme.common.model.hateoas.Metadata;
-import org.pauldenhez.accountme.common.model.transaction.dto.TransactionResponse;
+import org.pauldenhez.accountme.common.model.transaction.dto.TransactionDTO;
 import org.pauldenhez.accountme.common.model.transaction.vo.PositiveAmount;
 
 public class TransactionMapper {
 
-    public static TransactionResponse toDto(Transaction transaction, Links links, Metadata metadata) {
+    public static TransactionDTO toDto(org.pauldenhez.accountme.common.model.transaction.Transaction transaction) {
         if (transaction == null) {
             return null;
         }
 
-        return new TransactionResponse(
+        return new TransactionDTO(
                 transaction.getId(),
                 transaction.getDate(),
                 transaction.getMethod(),
@@ -23,17 +20,15 @@ public class TransactionMapper {
                 transaction.getType(),
                 transaction.getAmount().getValue(),
                 transaction.getAdditionalInformation(),
-                transaction.getTags(),
-                metadata,
-                links);
+                transaction.getTags());
     }
 
-    public static Transaction fromDto(TransactionResponse dto) {
+    public static org.pauldenhez.accountme.common.model.transaction.Transaction fromDto(TransactionDTO dto) {
         if (dto == null) {
             return null;
         }
 
-        return new Transaction(
+        return new org.pauldenhez.accountme.common.model.transaction.Transaction(
                 dto.id(),
                 dto.date(),
                 dto.method(),
