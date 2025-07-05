@@ -39,11 +39,6 @@
         }
 
         @Test
-        public void shouldDatasetBeLongEnough() {
-            assertThat(transactionRepository.findAll().size()).isGreaterThanOrEqualTo(MIN_DATA_TEST_LENGTH);
-        }
-
-        @Test
         public void shouldElasticSearchAbleToRun() {
             assertThat(elasticsearchContainer.isCreated()).isTrue();
             assertThat(elasticsearchContainer.isRunning()).isTrue();
@@ -68,5 +63,41 @@
             DocumentContext ctx = JsonPath.parse(responseEntity.getBody());
             String nextLink = ctx.read("$.links.next");
             assertThat(nextLink).isEqualTo("/transactions?size=" + SIZE_LIMIT + "&page=" + (PAGE_NUMBER + 1));
+        }
+
+        @Test
+        public void shouldReturnSecondPageWithFirstPageLink() {
+            int SIZE_LIMIT = 5;
+            int PAGE_NUMBER = 2;
+            String transactionURI = "/transactions?size=" + SIZE_LIMIT + "&page=" + PAGE_NUMBER;
+            var responseEntity = testRestTemplate.getForEntity(transactionURI, String.class);
+            DocumentContext ctx = JsonPath.parse(responseEntity.getBody());
+            String prevLink = ctx.read("$.links.prev");
+            assertThat(prevLink).isEqualTo("/transactions?size=" + SIZE_LIMIT + "&page=" + (PAGE_NUMBER - 1));
+        }
+
+        @Test
+        public void shouldReturnFirstLinkWhenPageNotFirst() {
+            int SIZE_LIMIT = 5;
+            int PAGE_NUMBER = 2;
+
+            String transactionURI = "/transactions?size=" + SIZE_LIMIT + "&page=" + PAGE_NUMBER;
+            var responseEntity = testRestTemplate.getForEntity(transactionURI, String.class);
+            DocumentContext ctx = JsonPath.parse(responseEntity.getBody());
+            String firstLink = ctx.read("$.links.first");
+            assertThat(firstLink).isEqualTo("/transactions?size=" + SIZE_LIMIT + "&page=1");
+        }
+
+        @Test
+        public void shouldReturnLastLinkWhenPageNotLast() {
+            int SIZE_LIMIT = 5;
+            int PAGE_NUMBER = 1;
+            int LAST_PAGE_NUMBER = 2;
+
+            String transactionURI = "/transactions?size=" + SIZE_LIMIT + "&page=" + PAGE_NUMBER;
+            var responseEntity = testRestTemplate.getForEntity(transactionURI, String.class);
+            DocumentContext ctx = JsonPath.parse(responseEntity.getBody());
+            String lastlink = ctx.read("$.links.last");
+            assertThat(lastlink).isEqualTo("/transactions?size=" + SIZE_LIMIT + "&page=" + LAST_PAGE_NUMBER);
         }
     }

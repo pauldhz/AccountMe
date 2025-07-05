@@ -25,11 +25,21 @@ public class TransactionController {
         this.transactionRepository = transactionRepository;
     }
 
-    private String buildTransactionUriPagedLink(int size, int currentPageNumber, int totalPages) {
-        if(currentPageNumber >= totalPages) {
-            return null;
+    private Links buildTransactionUriPagedLink(int size, int currentPageNumber, int totalPages) {
+        String next = null;
+        String prev = null;
+        String last = null;
+        String first = null;
+
+        if(currentPageNumber < totalPages) {
+            next = TRANSACTION_BASE_URI + "?size=" + size + "&page=" + (currentPageNumber + 1);
+            last = TRANSACTION_BASE_URI + "?size=" + size + "&page=" + totalPages;
         }
-        return TRANSACTION_BASE_URI + "?size=" + size + "&page=" + (currentPageNumber + 1);
+        if(currentPageNumber > 1) {
+            prev = TRANSACTION_BASE_URI + "?size=" + size + "&page=" + (currentPageNumber - 1);
+            first = TRANSACTION_BASE_URI + "?size=" + size + "&page=1";
+        }
+        return  new Links(next, prev, last, first);
     }
 
     @GetMapping(path = TRANSACTION_BASE_URI)
@@ -37,10 +47,10 @@ public class TransactionController {
         var requestedPage = transactionRepository.findAll(PageRequest.of(page,size));
         var transactions = requestedPage.stream()
                 .map(TransactionMapper::toDto).toList();
-        var nextPageLink = buildTransactionUriPagedLink(size, page, requestedPage.getTotalPages());
+        var pageLinks = buildTransactionUriPagedLink(size, page, requestedPage.getTotalPages());
         var transactionResponse = new TransactionResponse(
                 transactions,
-                new Links(nextPageLink, null, null, null),
+                pageLinks,
                 null);
         return ResponseEntity.ok(transactionResponse);
     }
