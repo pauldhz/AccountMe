@@ -1,6 +1,5 @@
 package org.pauldenhez.accountme.ws.transaction.controller;
 
-import org.pauldenhez.accountme.common.model.hateoas.Links;
 import org.pauldenhez.accountme.common.model.transaction.Transaction;
 import org.pauldenhez.accountme.common.model.transaction.dto.TransactionDTO;
 import org.pauldenhez.accountme.common.model.transaction.dto.TransactionResponse;
@@ -12,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Optional;
+
+import static org.pauldenhez.accountme.common.model.hateoas.LinksBuilder.buildTransactionUriPagedLink;
 
 @RestController
 @RequestMapping("")
@@ -25,29 +26,13 @@ public class TransactionController {
         this.transactionRepository = transactionRepository;
     }
 
-    private Links buildTransactionUriPagedLink(int size, int currentPageNumber, int totalPages) {
-        String next = null;
-        String prev = null;
-        String last = null;
-        String first = null;
-
-        if(currentPageNumber < totalPages) {
-            next = TRANSACTION_BASE_URI + "?size=" + size + "&page=" + (currentPageNumber + 1);
-            last = TRANSACTION_BASE_URI + "?size=" + size + "&page=" + totalPages;
-        }
-        if(currentPageNumber > 1) {
-            prev = TRANSACTION_BASE_URI + "?size=" + size + "&page=" + (currentPageNumber - 1);
-            first = TRANSACTION_BASE_URI + "?size=" + size + "&page=1";
-        }
-        return  new Links(next, prev, last, first);
-    }
 
     @GetMapping(path = TRANSACTION_BASE_URI)
-    public ResponseEntity<TransactionResponse> listAll(@RequestParam int size, @RequestParam int page) {
+    public ResponseEntity<TransactionResponse> listAll(@RequestParam(defaultValue = "20") int size, @RequestParam(defaultValue = "1") int page) {
         var requestedPage = transactionRepository.findAll(PageRequest.of(page,size));
         var transactions = requestedPage.stream()
                 .map(TransactionMapper::toDto).toList();
-        var pageLinks = buildTransactionUriPagedLink(size, page, requestedPage.getTotalPages());
+        var pageLinks = buildTransactionUriPagedLink(size, page, requestedPage.getTotalPages(), TRANSACTION_BASE_URI);
         var transactionResponse = new TransactionResponse(
                 transactions,
                 pageLinks,
@@ -80,6 +65,4 @@ public class TransactionController {
         transactionRepository.deleteById(id);
         return ResponseEntity.ok(String.format("Document %s removed", id));
     }
-
-
 }

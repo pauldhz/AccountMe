@@ -7,9 +7,9 @@ spring:
 #      name: user
 #      password: user
   elasticsearch:
-    uris: http://localhost:9200
-    username: AccountMe
-    password: 123456
+    uris: localhost:9200
+    username: elastic
+    password: test
 
 server:
   port: 8081
