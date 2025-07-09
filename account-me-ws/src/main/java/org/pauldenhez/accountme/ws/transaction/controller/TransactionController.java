@@ -1,5 +1,6 @@
 package org.pauldenhez.accountme.ws.transaction.controller;
 
+import org.pauldenhez.accountme.common.model.hateoas.Metadata;
 import org.pauldenhez.accountme.common.model.transaction.Transaction;
 import org.pauldenhez.accountme.common.model.transaction.dto.TransactionDTO;
 import org.pauldenhez.accountme.common.model.transaction.dto.TransactionResponse;
@@ -36,7 +37,7 @@ public class TransactionController {
         var transactionResponse = new TransactionResponse(
                 transactions,
                 pageLinks,
-                null);
+                new Metadata(requestedPage.getTotalPages(), requestedPage.getSize(), page));
         return ResponseEntity.ok(transactionResponse);
     }
 
