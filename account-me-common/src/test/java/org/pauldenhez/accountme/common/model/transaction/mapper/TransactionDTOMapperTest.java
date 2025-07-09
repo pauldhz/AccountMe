@@ -2,7 +2,6 @@ package org.pauldenhez.accountme.common.model.transaction.mapper;
 
 import org.junit.jupiter.api.Test;
 import org.pauldenhez.accountme.common.model.transaction.AdditionalInformation;
-import org.pauldenhez.accountme.common.model.transaction.Transaction;
 import org.pauldenhez.accountme.common.model.transaction.TransactionMethod;
 import org.pauldenhez.accountme.common.model.transaction.TransactionType;
 import org.pauldenhez.accountme.common.model.transaction.dto.TransactionDTO;
@@ -13,7 +12,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class TransactionMapperTest {
+class TransactionDTOMapperTest {
 
     @Test
     void shouldMapDtoToEntityCorrectly() {
@@ -28,10 +27,9 @@ class TransactionMapperTest {
                 TransactionType.CREDIT,
                 123.45,
                 new AdditionalInformation("category", "subcategory", true, "Checking Account"),
-                List.of("tag1", "tag2")
-        );
+                List.of("tag1", "tag2"));
 
-        Transaction entity = TransactionMapper.fromDto(dto);
+        org.pauldenhez.accountme.common.model.transaction.Transaction entity = TransactionMapper.fromDto(dto);
 
         assertThat(entity).isNotNull();
         assertThat(entity.getId()).isEqualTo(dto.id());
@@ -50,7 +48,7 @@ class TransactionMapperTest {
     @Test
     void shouldMapEntityToDtoCorrectly() {
         // Given
-        Transaction entity = new Transaction(
+        org.pauldenhez.accountme.common.model.transaction.Transaction entity = new org.pauldenhez.accountme.common.model.transaction.Transaction(
                 "txn-002",
                 new Date(),
                 TransactionMethod.PAYMENT,

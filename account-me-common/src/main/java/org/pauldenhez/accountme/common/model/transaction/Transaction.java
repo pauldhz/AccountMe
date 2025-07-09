@@ -2,6 +2,7 @@ package org.pauldenhez.accountme.common.model.transaction;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.pauldenhez.accountme.common.model.transaction.vo.PositiveAmount;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -14,6 +15,7 @@ import java.util.List;
 @Document(indexName = "transactions")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Transaction {
 
     @Id

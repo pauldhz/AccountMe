@@ -1,19 +1,25 @@
-package org.pauldenhez.accountme.ws.controller;
+package org.pauldenhez.accountme.ws.transaction.controller;
 
+import org.pauldenhez.accountme.common.model.hateoas.Metadata;
 import org.pauldenhez.accountme.common.model.transaction.Transaction;
 import org.pauldenhez.accountme.common.model.transaction.dto.TransactionDTO;
+import org.pauldenhez.accountme.common.model.transaction.dto.TransactionResponse;
 import org.pauldenhez.accountme.common.model.transaction.mapper.TransactionMapper;
 import org.pauldenhez.accountme.ws.repository.TransactionRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
+
+import static org.pauldenhez.accountme.common.model.hateoas.LinksBuilder.buildTransactionUriPagedLink;
 
 @RestController
 @RequestMapping("")
 public class TransactionController {
+
+    private final static String TRANSACTION_BASE_URI = "/transactions";
 
     private final TransactionRepository transactionRepository;
 
@@ -21,36 +27,43 @@ public class TransactionController {
         this.transactionRepository = transactionRepository;
     }
 
-    @GetMapping(path = "/transactions")
-    public ResponseEntity<List<TransactionDTO>> listAll() {
-        final var transactions = transactionRepository.findAll().stream().map(TransactionMapper::toDto).toList();
-        return ResponseEntity.ok(transactions);
+
+    @GetMapping(path = TRANSACTION_BASE_URI)
+    public ResponseEntity<TransactionResponse> listAll(@RequestParam(defaultValue = "20") int size, @RequestParam(defaultValue = "1") int page) {
+        var requestedPage = transactionRepository.findAll(PageRequest.of(page,size));
+        var transactions = requestedPage.stream()
+                .map(TransactionMapper::toDto).toList();
+        var pageLinks = buildTransactionUriPagedLink(size, page, requestedPage.getTotalPages(), TRANSACTION_BASE_URI);
+        var transactionResponse = new TransactionResponse(
+                transactions,
+                pageLinks,
+                new Metadata(requestedPage.getTotalPages(), requestedPage.getSize(), page));
+        return ResponseEntity.ok(transactionResponse);
     }
 
-    @PutMapping(path = "/transactions")
+    @PutMapping(path = TRANSACTION_BASE_URI)
     public ResponseEntity<Transaction> createTransaction(@RequestBody TransactionDTO transaction) {
         Transaction savedTransaction = transactionRepository.save(TransactionMapper.fromDto(transaction));
         return ResponseEntity.ok(savedTransaction);
     }
 
-    @PostMapping(path = "/transactions")
+    @PostMapping(path = TRANSACTION_BASE_URI)
     public ResponseEntity<Boolean> createTransactions(@RequestBody TransactionDTO[] transactions) {
         transactionRepository.saveAll(Arrays.stream(transactions).map(TransactionMapper::fromDto).toList());
         return ResponseEntity.ok(true);
     }
 
-    @GetMapping(path = "/transactions/{id}")
+    @GetMapping(path = TRANSACTION_BASE_URI + "/{id}")
     public ResponseEntity<TransactionDTO> getById(@PathVariable String id) {
         Optional<Transaction> transaction = transactionRepository.findById(id);
-        return transaction.map(TransactionMapper::toDto).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return transaction.map((TransactionMapper::toDto))
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping(path = "/transactions/{id}")
+    @DeleteMapping(path = TRANSACTION_BASE_URI + "/{id}")
     public ResponseEntity<String> deleteTransaction(@PathVariable String id) {
         transactionRepository.deleteById(id);
         return ResponseEntity.ok(String.format("Document %s removed", id));
     }
-
-
-
 }

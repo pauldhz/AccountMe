@@ -1,12 +1,11 @@
 package org.pauldenhez.accountme.common.model.transaction.mapper;
 
-import org.pauldenhez.accountme.common.model.transaction.Transaction;
 import org.pauldenhez.accountme.common.model.transaction.dto.TransactionDTO;
 import org.pauldenhez.accountme.common.model.transaction.vo.PositiveAmount;
 
 public class TransactionMapper {
 
-    public static TransactionDTO toDto(Transaction transaction) {
+    public static TransactionDTO toDto(org.pauldenhez.accountme.common.model.transaction.Transaction transaction) {
         if (transaction == null) {
             return null;
         }
@@ -21,16 +20,15 @@ public class TransactionMapper {
                 transaction.getType(),
                 transaction.getAmount().getValue(),
                 transaction.getAdditionalInformation(),
-                transaction.getTags()
-        );
+                transaction.getTags());
     }
 
-    public static Transaction fromDto(TransactionDTO dto) {
+    public static org.pauldenhez.accountme.common.model.transaction.Transaction fromDto(TransactionDTO dto) {
         if (dto == null) {
             return null;
         }
 
-        return new Transaction(
+        return new org.pauldenhez.accountme.common.model.transaction.Transaction(
                 dto.id(),
                 dto.date(),
                 dto.method(),

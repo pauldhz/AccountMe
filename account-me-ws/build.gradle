@@ -20,21 +20,25 @@ repositories {
 
 dependencies {
 	implementation project(':account-me-common')
-//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//  implementation 'org.springframework.boot:spring-boot-starter-security' // TODO uncomment to activate security
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	//implementation 'org.projectlombok:lombok:1.18.38'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-//	runtimeOnly 'org.postgresql:postgresql'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	//testImplementation 'org.springframework.security:spring-security-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-elasticsearch
 	implementation group: 'org.springframework.data', name: 'spring-data-elasticsearch', version: '5.4.4'
-// https://mvnrepository.com/artifact/org.projectlombok/lombok
+	implementation("com.fasterxml.jackson.core:jackson-core:2.19.1")
 	compileOnly 'org.projectlombok:lombok:1.18.38'
 	annotationProcessor 'org.projectlombok:lombok:1.18.38'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation "org.testcontainers:testcontainers:1.21.3"
+	testImplementation "org.testcontainers:junit-jupiter:1.21.3"
+	testImplementation "org.testcontainers:elasticsearch:1.21.3"
+	testImplementation "org.junit.jupiter:junit-jupiter:5.8.1"
+
+//  implementation 'org.projectlombok:lombok:1.18.38'
+//	runtimeOnly 'org.postgresql:postgresql'
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//  implementation 'org.springframework.boot:spring-boot-starter-security' // TODO uncomment to activate security
+//  testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
